@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_math_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: apaula-l <apaula-l@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -11,27 +11,25 @@
 /* ************************************************************************** */
 #include "fractol.h"
 
-int	main(int ac, char **av)
+double map(double unscaled_num, double new_min, double new_max, double old_min, double old_max)
 {
-	t_fractal	fractal;
+    return (new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min) + new_min;
+}
 
+t_complex   sum_complex(t_complex z1, t_complex z2)
+{
+    t_complex   result;
 
-	if (2 == ac && !ft_strncmp(av[1], "mandelbrot", 10)
-		|| 4 == ac && !ft_strncmp(av[1], "julia", 5))
-	{
-		fractal.name = av[1];
-		if (!ft_strncmp(fractal.name, "julia", 5))
-		{
-			fractal.julia_x = atodbl(av[2]);
-			fractal.julia_y = atodbl(av[3]);
-		}
-		fractal_init(&fractal);
-		fractal_render(&fractal);
-		mlx_loop(fractal.mlx_connection);
-	}
-	else
-	{
-		putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
-		exit(EXIT_FAILURE);
-	}
+    result.x = z1.x + z2.x;
+    result.y = z1.y + z2.y;
+    return result;
+}
+
+t_complex   square_complex(t_complex z)
+{
+    t_complex   result;
+    
+    result.x = (z.x * z.x) - (z.y * z.y);
+    result.y = 2 * z.x * z.y;
+    return result;
 }
