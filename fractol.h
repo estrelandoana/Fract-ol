@@ -45,6 +45,7 @@ typedef struct	s_complex
 	double	x;
 	double	y;
 }				t_complex;
+
 typedef struct	s_img
 {
 	void	*img_ptr;
