@@ -44,7 +44,6 @@ static void	handle_pixel(int x, int y, t_fractal *fractal)
 	z.x = (map(x, -2, +2, 0, WIDTH) * fractal->zoom) + fractal->shift_x;
 	z.y = (map(y, +2, -2, 0, HEIGHT) * fractal->zoom) + fractal->shift_y;
 
-
 	mandel_vs_julia(&z, &c, fractal);
 
 	while (i < fractal->iterations_defintion)
