@@ -17,8 +17,6 @@ static void	malloc_error(void)
 	exit(EXIT_FAILURE);
 }
 
-
-
 static void	data_init(t_fractal *fractal)
 {
 	fractal->escape_value = 4;
@@ -27,7 +25,6 @@ static void	data_init(t_fractal *fractal)
 	fractal->shift_y = 0.0;
 	fractal->zoom = 1.0;
 }
-
 
 static void	events_init(t_fractal *fractal)
 {
