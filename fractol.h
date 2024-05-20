@@ -18,7 +18,7 @@
 # include <math.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
-# include "minilibx-linux-master/mlx.h"
+# include "minilibx-linux/mlx.h"
 
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
