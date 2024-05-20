@@ -20,7 +20,6 @@
 # include <X11/keysym.h>
 # include "minilibx-linux-master/mlx.h"
 
-
 #define ERROR_MESSAGE "Please enter \n\t\"./fractol mandelbrot\" or \n\t\"./fractol julia <value_1> <value_2>\"\n"
 
 #define WIDTH	800
