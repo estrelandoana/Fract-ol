@@ -71,9 +71,7 @@ void	fractal_render(t_fractal *fractal)
 	{
 		x = -1;
 		while (++x < WIDTH)
-		{
 			handle_pixel(x, y, fractal);
-		}
 	}
 	mlx_put_image_to_window(fractal->mlx_connection,
 							fractal->mlx_window,
