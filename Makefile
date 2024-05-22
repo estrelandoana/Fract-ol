@@ -6,16 +6,19 @@
 #    By: apaula-l <apaula-l@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/20 14:31:25 by apaula-l          #+#    #+#              #
-#    Updated: 2024/05/23 03:33:59 by apaula-l         ###   ########.fr        #
+#    Updated: 2024/05/20 14:52:59 by apaula-l         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-INCS := -I./include -I/usr/include/ -I/usr/include/minilibx-linux
+# INCS := -I./include -I/usr/include/ -I./ -I/usr/include/minilibx-linux
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -Ofast
-CPPFLAGS := $(addprefix -I,$(INCS)) -MMD -MP
-LIBS = -L/usr/lib -lmlx -lXext -lX11 -lm
+CFLAGS = -Wall -Wextra -Werror
+# CPPFLAGS := $(addprefix -I,$(INCS)) -MMD -MP
+# LIBS = -L/usr/lib -lmlx -lXext -lX11 -lm
+MLXFLAGS = -lX11 -lXext -lmlx
+MLXINCLUDE    = -Imlx
+# MLX_PATH = minilibx-linux
 MLX = $(MLX_PATH)/libmlx.a
 
 SRCS = main.c \
@@ -29,16 +32,16 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(MLX)
-	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) -L$(MLX_PATH) -lmlx_Linux -lX11 -lXext -o fractol
-
+#	$(CC) $(CFLAGS) $(OBJS) $(LIBS) -o $(NAME) -L$(MLX_PATH) -lmlx_Linux -lX11 -lXext -o fractol
+    cc $(CFLAGS) $^ $(MLXINCLUDE) $(MLXFLAGS) -o $@
 %.o: %.c
-	$(CC) $(CFLAGS) $(CPPFLAGS) -I$(MLX_PATH) -c $< -o $@
+    $(CC) $(CFLAGS) -c $< $(MLXINCLUDE) -o $@
 
 $(MLX):
 	@$(MAKE) -C $(MLX_PATH)
 
 clean:
-	@$(MAKE) -C $(MLX_PATH) clean
+#	@$(MAKE) clean -C $(MLX_PATH)
 	rm -f $(OBJS)
 
 fclean: clean
